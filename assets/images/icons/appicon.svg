@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2019 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="3.41333in" height="3.41333in" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 3413.33 3413.33"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil1 {fill:white}
+    .fil0 {fill:url(#id0)}
+   ]]>
+  </style>
+  <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="874.39" y1="858.43" x2="2558.94" y2="2568.24">
+   <stop offset="0" style="stop-opacity:1; stop-color:#6666FF"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#000066"/>
+  </linearGradient>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2068123474640">
+   <rect class="fil0" x="6.67" y="3.33" width="3420" height="3420"/>
+   <path class="fil1" d="M2183.15 600l-932.98 0c-405.25,0 -646.85,241.59 -646.85,646.85l0 932.98c0,405.25 241.59,646.85 646.85,646.85l932.98 0c405.25,0 646.85,-241.59 646.85,-646.85l0 -932.98c0,-405.25 -241.59,-646.85 -646.85,-646.85zm-692.5 1436.2l-250.5 250.5c-16.7,16.7 -37.85,24.5 -59.01,24.5 -21.15,0 -43.42,-7.8 -59,-24.5l-83.5 -83.5c-33.4,-32.29 -33.4,-85.72 0,-118.01 32.28,-32.29 84.61,-32.29 118.01,0l24.49 24.49 191.5 -191.49c32.29,-32.29 84.61,-32.29 118.01,0 32.29,32.29 32.29,85.73 0,118.01zm0 -779.33l-250.5 250.5c-16.7,16.7 -37.85,24.5 -59.01,24.5 -21.15,0 -43.42,-7.8 -59,-24.5l-83.5 -83.5c-33.4,-32.29 -33.4,-85.72 0,-118.01 32.28,-32.29 84.61,-32.29 118.01,0l24.49 24.49 191.5 -191.49c32.29,-32.29 84.61,-32.29 118.01,0 32.29,32.29 32.29,85.72 0,118.01zm845.02 970.83l-584.5 0c-45.65,0 -83.5,-37.85 -83.5,-83.5 0,-45.65 37.85,-83.5 83.5,-83.5l584.5 0c46.76,0 83.5,37.85 83.5,83.5 0,45.65 -36.74,83.5 -83.5,83.5zm0 -779.33l-584.5 0c-45.65,0 -83.5,-37.85 -83.5,-83.5 0,-45.65 37.85,-83.5 83.5,-83.5l584.5 0c46.76,0 83.5,37.85 83.5,83.5 0,45.65 -36.74,83.5 -83.5,83.5z"/>
+  </g>
+ </g>
+</svg>
