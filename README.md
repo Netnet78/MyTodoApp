@@ -2,7 +2,7 @@
 
 <img src="assets\images\icons\appicon.png" width="120" height="120">
 
-## **A simple app packaged with functionalities such as organizing your tasks, manage your plans, and customizations as well.**
+## **A simple app packaged with functionalities such as helping you with tasks organization or plans management, and customizations over the application as well.**
 
 A passionate project of mine using the following technologies:
 
