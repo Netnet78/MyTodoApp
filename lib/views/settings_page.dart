@@ -51,8 +51,7 @@ class _SettingsPageWidgetState extends ConsumerState<SettingsPageWidget> {
       body: Column(
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
-            height: 80,
+            padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
                 border: Border.all(color: Theme.of(context).dividerColor, width: 1.5),
                 boxShadow: const [BoxShadow(
