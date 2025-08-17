@@ -8,8 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:to_do_app/components/components.dart';
 import 'package:to_do_app/data/models/task_model.dart';
 import 'package:to_do_app/viewmodels/viewmodels.dart';
-
-import '../core/utils/utils.dart';
+import 'package:to_do_app/views/edit_task_form.dart';
 
 class HomePageWidget extends ConsumerStatefulWidget {
   const HomePageWidget({super.key});
@@ -84,96 +83,6 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
     ) ?? false; // Return false if dismissed
   }
 
-  /// Create the task sheet section 
-  /// where it's being shown after 
-  /// clicking the arrow at the end of each tasks
-  Future<bool> _showTaskInfo(BuildContext context, Task task) async {
-    final theme = Theme.of(context);
-    final sheetHeight = MediaQuery.of(context).size.height * 0.9;
-    final sheetWidth = MediaQuery.of(context).size.width * 0.8;
-    const double boxRadius = 24.0;
-    return await showModalBottomSheet<bool>(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      sheetAnimationStyle: const AnimationStyle(
-          curve: Curves.easeInOut, 
-          duration: Duration(milliseconds: 600)
-        ),
-      builder: (context) {
-        // ignore: prefer_const_constructors
-        return Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Align(
-            alignment: Alignment.center,
-            child: Stack(
-              children: [
-                Container(
-                  child: CustomPaint(
-                    painter: GridBackgroundPainter(
-                      gridSize: 25,
-                      lineColor: const Color.fromARGB(75, 158, 158, 158),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0, top: 50.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text("This is the edit section!"),
-                        ],
-                      ),
-                    ),
-                  ),
-                  alignment: Alignment.center,
-                  height: sheetHeight,
-                  width: sheetWidth,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(boxRadius)),
-                    color: theme.cardColor,
-                    border: Border.all(
-                      color: theme.dividerColor,
-                      width: 2.5,
-                    )
-                  ),
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size(sheetWidth,20),
-                    backgroundColor: theme.primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: const BorderRadiusGeometry.directional(
-                        topStart: Radius.circular(boxRadius),
-                        topEnd: Radius.circular(boxRadius),
-                      ),
-                      side: BorderSide(
-                        color: theme.dividerColor,
-                        width: 2.5,
-                        
-                      )
-                    )
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: 12,
-                    children: [
-                      const Icon(Icons.arrow_back, color: Colors.white,),
-                      Text("Go back", style: GoogleFonts.inter().copyWith(
-                        color: Colors.white
-                      ),),
-                    ],
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context,false);
-                  },
-                )
-              ],
-            ),
-          ),
-        );
-      },
-    ) ?? false;
-  }
-
   Future<String?> showEditAndDeleteOptions(BuildContext context, Task task) async {
     final theme = Theme.of(context);
     final sheetHeight = MediaQuery.of(context).size.height * 0.35;
@@ -230,7 +139,7 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
                           child: Container(
                             padding: const EdgeInsets.only(left: 12),
                             child: Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -337,7 +246,11 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
                           _deleteTask(vm, task);
                         }
                       } else if (choice == "edit" && context.mounted) {
-                        _showTaskInfo(context, task);
+                        Task? updatedTask = await showTaskInfo(context, task);
+                        if (updatedTask != null) {
+                          await vm.update(updatedTask);
+                          ref.watch(taskViewmodelProvider.notifier).refresh();
+                        }
                       }
                     },
                     onDeleteTap: () async {
