@@ -18,6 +18,7 @@ A passionate project of mine using the following technologies:
 - Calendar / Time system (with UI)
 - Timer / Alarm system
 - Responsive design
+- Sorting system
 - Authentication feature
 - Synchronize changes over internet (with account)
 
