@@ -85,112 +85,132 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
 
   Future<String?> showEditAndDeleteOptions(BuildContext context, Task task) async {
     final theme = Theme.of(context);
-    final sheetHeight = MediaQuery.of(context).size.height * 0.35;
+    final sheetHeight = MediaQuery.of(context).size.height * 0.4;
     return await showModalBottomSheet<String>(
       context: context,
       isScrollControlled: true,
+      isDismissible: true,
       backgroundColor: Colors.transparent,
       sheetAnimationStyle: const AnimationStyle(
           curve: Curves.easeInOut, 
           duration: Duration(milliseconds: 600)
         ),
       builder: (context) {
-        return Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            height: sheetHeight,
-            width: MediaQuery.of(context).size.width * 1,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: theme.scaffoldBackgroundColor,
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-            ),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    overflow: TextOverflow.fade,
-                    maxLines: 1,
-                    task.title, 
-                    style: GoogleFonts.inter().copyWith(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+        return GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: sheetHeight,
+              width: MediaQuery.of(context).size.width * 1,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: theme.scaffoldBackgroundColor,
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+              ),
+              child: Column(
+                children: [
+                  const SizedBox(height: 4.0,),
+                  Container(
+                    width: 60,
+                    height: 3,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primary,
+                      borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                     ),
                   ),
-                ),
-                ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: 350
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    spacing: 20,
+                  Column(
                     children: [
-                      // Gesture detector for edit card
-                      GestureDetector(
-                        onTap: () => Navigator.pop(context, "edit"),
-                        child: MyCard(  
-                          backgroundColor: theme.cardColor,
-                          width: double.infinity,
-                          height: 78,
-                          borderColor: theme.dividerColor,
-                          borderRadius: 12.5,
-                          child: Container(
-                            padding: const EdgeInsets.only(left: 12),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                spacing: 12,
-                                children: [
-                                  MyCardLabel(
-                                      title: "Edit this task", 
-                                      subtitle: "Edit and save changes!",
-                                      icon: Icons.edit,
-                                      textColor: theme.colorScheme.primary,
-                                      iconColor: theme.colorScheme.primary,
-                                  ),
-                                ],
-                              ),
-                            ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          overflow: TextOverflow.fade,
+                          maxLines: 1,
+                          task.title, 
+                          style: GoogleFonts.inter().copyWith(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      // Gesture detector for delete card
-                      GestureDetector(
-                        onTap: () => Navigator.pop(context, "delete"),
-                        child: MyCard(
-                          backgroundColor: Colors.red,
-                          width: double.infinity,
-                          height: 78,
-                          borderColor: theme.dividerColor,
-                          borderRadius: 12.5,
-                          child: Container(
-                            padding: const EdgeInsets.only(left: 12),
-                            child: const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                spacing: 12,
-                                children: [
-                                  MyCardLabel(
-                                      title: "Delete this task", 
-                                      subtitle: "Delete this task from the list!",
-                                      icon: Icons.delete,
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          maxWidth: 350
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          spacing: 20,
+                          children: [
+                            // Gesture detector for edit card
+                            GestureDetector(
+                              onTap: () => Navigator.pop(context, "edit"),
+                              child: MyCard(  
+                                backgroundColor: theme.cardColor,
+                                width: double.infinity,
+                                height: 78,
+                                borderColor: theme.dividerColor,
+                                borderRadius: 12.5,
+                                child: Container(
+                                  padding: const EdgeInsets.only(left: 12),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      spacing: 12,
+                                      children: [
+                                        MyCardLabel(
+                                            title: "Edit this task", 
+                                            subtitle: "Edit and save changes!",
+                                            icon: Icons.edit,
+                                            textColor: theme.colorScheme.primary,
+                                            iconColor: theme.colorScheme.primary,
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
+                            // Gesture detector for delete card
+                            GestureDetector(
+                              onTap: () => Navigator.pop(context, "delete"),
+                              child: MyCard(
+                                backgroundColor: Colors.red,
+                                width: double.infinity,
+                                height: 78,
+                                borderColor: theme.dividerColor,
+                                borderRadius: 12.5,
+                                child: Container(
+                                  padding: const EdgeInsets.only(left: 12),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      spacing: 12,
+                                      children: [
+                                        MyCardLabel(
+                                            title: "Delete this task", 
+                                            subtitle: "Delete this task from the list!",
+                                            icon: Icons.delete,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ), 
+                          ],
                         ),
-                      ), 
+                      ),
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );
@@ -233,8 +253,9 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
                     state: _isEditModeEnabled ? "editing" : "normal",
                     taskTitle: task.title,
                     taskDesc: task.description.toString(),
-                    onNormalTap: () {
+                    onNormalTap: () async {
                       log("Pressed 'show more' task ${task.id}");
+                      await _editTask(context, task, vm);
                     },
                     onCardTap: () async {
                       log("Pressed the card widget for task ${task.id}");
@@ -243,21 +264,17 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
                       if (choice == "delete" && context.mounted) {
                         bool confirmed = await showMessageBox(context);
                         if (confirmed == true) {
-                          _deleteTask(vm, task);
+                          await _deleteTask(vm, task);
                         }
                       } else if (choice == "edit" && context.mounted) {
-                        Task? updatedTask = await showTaskInfo(context, task);
-                        if (updatedTask != null) {
-                          await vm.update(updatedTask);
-                          ref.watch(taskViewmodelProvider.notifier).refresh();
-                        }
+                        await _editTask(context, task, vm);
                       }
                     },
                     onDeleteTap: () async {
                       log("Pressed delete task ${task.id}");
                       bool confirmed = await showMessageBox(context);
                       if (confirmed == true) {
-                        _deleteTask(vm, task);
+                        await _deleteTask(vm, task);
                       } else {
                         log("Cancelled the deletion of the task");
                       }
@@ -280,8 +297,16 @@ class _HomePageWidgetState extends ConsumerState<HomePageWidget> {
     );
   }
 
-  void _deleteTask(TaskViewmodel vm, Task task) {
-    vm.delete(task.id!.toInt());
+  Future<void> _editTask(BuildContext context, Task task, TaskViewmodel vm) async {
+    Task? updatedTask = await showTaskInfo(context, task);
+    if (updatedTask != null) {
+      await vm.update(updatedTask);
+      ref.watch(taskViewmodelProvider.notifier).refresh();
+    }
+  }
+
+  Future<void> _deleteTask(TaskViewmodel vm, Task task) async {
+    await vm.delete(task.id!.toInt());
     ref.watch(taskViewmodelProvider.notifier).refresh();
     log("Deleted the task!");
   }
